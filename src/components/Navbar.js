@@ -2,13 +2,17 @@ import React from 'react'
 
 import { Link, useHistory, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = (props) => {
     //use of useLocation
     const history = useHistory();
     let location = useLocation();
     const handleLogout = () => {
-        localStorage.removeItem("auth-token");
-        history.push("/login");
+        if (window.confirm("Are you sure to Logout your account ??")===true) {
+            localStorage.removeItem("auth-token");
+            props.showAlert("You are Logged out now...","success");
+            history.push("/login");
+        }
+        
     }
 
     return (

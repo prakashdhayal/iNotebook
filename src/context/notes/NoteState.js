@@ -7,7 +7,6 @@ const NoteState = (props) => {
     const host = "http://localhost:5000";
     const [notes, setNotes] = useState(initialNotes)
 
-
     //Get all notes
     const getNotes = async () => {
         //API Call
@@ -37,9 +36,10 @@ const NoteState = (props) => {
         });
         const json = await response.json();
         // console.log(json);
-
-        const note = json;
-        setNotes(notes.concat(note));
+        if (json.success) {
+            const note = json.note;
+            setNotes(notes.concat(note));
+        }
     }
 
     //Delete a note

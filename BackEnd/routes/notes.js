@@ -19,8 +19,10 @@ route.post('/addnote', varifyToken, async (req, res) => {
         user: req.user._id
     })
     try {
-        res.json(note);
+        success=true;
+        res.json({success,note});
     } catch (error) {
+        success=false;
         res.status(500).json({ success, error: "Internal server error" });
     }
 
