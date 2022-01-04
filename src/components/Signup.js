@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from "react-router-dom";
 
 const Signup = (props) => {
     let history = useHistory();
@@ -64,6 +64,9 @@ const Signup = (props) => {
                 </div>
                 <button type="submit" className="btn btn-primary my-2">Submit</button>
             </form>
+            <div className="my-3">
+                <h6>Have iNotebook Account ?? <Link to="/login">Login here...</Link></h6>
+            </div>
         </div>
     )
 }

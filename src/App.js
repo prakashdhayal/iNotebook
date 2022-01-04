@@ -13,6 +13,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
+import LandingPage from './components/landingPage/LandingPage';
 
 function App() {
   const [alert, setAlert] = useState(null)
@@ -36,7 +37,10 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/">
-                <Home showAlert={showAlert}/>
+                {
+                  (localStorage.getItem('auth-token')) ?
+                    <Home showAlert={showAlert} /> : <LandingPage />
+                }
               </Route>
               <Route exact path="/about">
                 <About />

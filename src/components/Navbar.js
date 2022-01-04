@@ -1,4 +1,5 @@
 import React from 'react'
+import '../index.css'
 
 import { Link, useHistory, useLocation } from "react-router-dom";
 
@@ -7,12 +8,12 @@ const Navbar = (props) => {
     const history = useHistory();
     let location = useLocation();
     const handleLogout = () => {
-        if (window.confirm("Are you sure to Logout your account ??")===true) {
+        if (window.confirm("Are you sure to Logout your account ??") === true) {
             localStorage.removeItem("auth-token");
-            props.showAlert("You are Logged out now...","success");
-            history.push("/login");
+            props.showAlert("You are Logged out now...", "success");
+            history.push("/");
         }
-        
+
     }
 
     return (
@@ -34,10 +35,17 @@ const Navbar = (props) => {
                             <Link className={`nav-link ${(location.path === '/contact') ? "active" : ""}`} to="/contact">Contact Us</Link>
                         </li>
                     </ul>
-                    {!localStorage.getItem('auth-token') ? <form className="d-flex">
-                        <Link className="btn btn-primary mx-2" to="/login" href="#" role="button">Login</Link>
-                        <Link className="btn btn-primary mx-2" to="/signup" href="#" role="button">Signup</Link>
-                    </form> : <button className="btn btn-primary" onClick={handleLogout}>Logout</button>
+                    {
+                        localStorage.getItem('auth-token') && <div className="dropdown dropleft">
+                            <button className="btn btn-primary dropdown-toggle mx-5 " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                My Account
+                            </button>
+                            <div className="dropdown-menu my-3" style={{ width: "220px", border: "2px solid black" }} aria-labelledby="dropdownMenu2">
+                                <button className="dropdown-item" disabled={1} type="button">my profile</button>
+                                <button className="dropdown-item my-2" disabled={1} type="button">Forgot password??</button>
+                                <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
+                            </div>
+                        </div>
                     }
                 </div>
             </div>

@@ -1,3 +1,9 @@
 i{
     cursor: pointer;
 }
+@media only screen and (max-width: 990px) {
+    #dropdownMenu2{
+        position: relative;
+        left: -50px;
+    }
+  }
