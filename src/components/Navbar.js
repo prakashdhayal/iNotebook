@@ -15,6 +15,7 @@ const Navbar = (props) => {
         }
 
     }
+    const pathname = window.location.pathname;
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -36,7 +37,7 @@ const Navbar = (props) => {
                         </li>
                     </ul>
                     {
-                        localStorage.getItem('auth-token') && <div className="dropdown dropleft">
+                        localStorage.getItem('auth-token') ? <div className="dropdown dropleft">
                             <button className="btn btn-primary dropdown-toggle mx-5 " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 My Account
                             </button>
@@ -45,7 +46,10 @@ const Navbar = (props) => {
                                 <button className="dropdown-item my-2" disabled={1} type="button">Forgot password??</button>
                                 <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
                             </div>
-                        </div>
+                        </div> : (pathname === '/contact' || pathname === '/about') && <form className="d-flex">
+                            <Link className="btn btn-primary mx-2" to="/login" href="#" role="button">Login</Link>
+                            <Link className="btn btn-primary mx-2" to="/signup" href="#" role="button">Signup</Link>
+                        </form>
                     }
                 </div>
             </div>
