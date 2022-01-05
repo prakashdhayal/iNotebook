@@ -2,6 +2,7 @@ import React from 'react'
 import '../index.css'
 
 import { Link, useHistory, useLocation } from "react-router-dom";
+import SearchNote from './SearchNote';
 
 const Navbar = (props) => {
     //use of useLocation
@@ -36,8 +37,11 @@ const Navbar = (props) => {
                             <Link className={`nav-link ${(location.path === '/contact') ? "active" : ""}`} to="/contact">Contact Us</Link>
                         </li>
                     </ul>
+                    <div className="searchnote">
+                        <SearchNote setSearch={props.setSearch}/>
+                    </div>
                     {
-                        localStorage.getItem('auth-token') ? <div className="dropdown dropleft">
+                        localStorage.getItem('auth-token') ? <div className="dropdown dropleft lsbutton">
                             <button className="btn btn-primary dropdown-toggle mx-5 " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 My Account
                             </button>
@@ -46,7 +50,7 @@ const Navbar = (props) => {
                                 <button className="dropdown-item my-2" disabled={1} type="button">Forgot password??</button>
                                 <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
                             </div>
-                        </div> : (pathname === '/contact' || pathname === '/about') && <form className="d-flex">
+                        </div> : (pathname === '/contact' || pathname === '/about') && <form className="d-flex lsbutton">
                             <Link className="btn btn-primary mx-2" to="/login" href="#" role="button">Login</Link>
                             <Link className="btn btn-primary mx-2" to="/signup" href="#" role="button">Signup</Link>
                         </form>

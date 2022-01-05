@@ -5,6 +5,7 @@ import NoteItem from './NoteItem';
 
 
 const Notes = (props) => {
+    const search=props.search;
     const history = useHistory();
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
     const context = useContext(noteContext);
@@ -80,9 +81,10 @@ const Notes = (props) => {
 
             <div className="row my-3">
                 <h2>Your Notes</h2>
-                {notes.map((note) => {
-                    return <NoteItem showAlert={props.showAlert} key={note._id} updateNote={updateNote} note={note} />
-                })}
+                {notes.filter(function(filteredNote) { 
+                return filteredNote.title.toLowerCase().includes(search.toLowerCase()) || filteredNote.tag.toLowerCase().includes(search.toLowerCase())
+                }).map((note) => <NoteItem showAlert={props.showAlert} key={note._id} updateNote={updateNote} note={note} />
+                )}
             </div>
         </div>
     )

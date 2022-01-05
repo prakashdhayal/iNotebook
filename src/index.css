@@ -1,9 +1,35 @@
 i{
     cursor: pointer;
 }
-@media only screen and (max-width: 990px) {
+.searchnote{
+  margin-right: 20px;
+}
+@media only screen and (max-width: 991px) {
     #dropdownMenu2{
         position: relative;
         left: -50px;
+    }
+    .about{
+        width: 90% !important;
+    }
+    .lsbutton{
+      margin-top: 10px;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .contactform{
+        width:100% !important;
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    .inputdata{
+        margin-left: -30% !important;
+        min-width: 150% !important;
+    }
+  }
+  @media only screen and (max-width: 380px) {
+    .inputdata{
+        margin-left: -50% !important;
+        min-width: 200% !important;
     }
   }

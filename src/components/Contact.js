@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../index.css';
 
 //npm i emailjs-com
 import emailjs from 'emailjs-com'
@@ -17,18 +18,18 @@ const Contact = (props) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
     return (
-        <div className="container border" stylr={{
-            marginTop: "50px", width: "50%", backgroundImage: 'url("")', backgroundPosition: "center", backgroundSize: "cover"
+        <div className="container border contactform" style={{
+            marginTop: "50px", width: "70%", backgroundImage: 'url("")', backgroundPosition: "center", backgroundSize: "cover"
         }}>
             <h1 style={{ marginTop: "25px", textAlign: "center" }}>Contact Form</h1>
             <form className="row" onSubmit={sendEmail} style={{ margin: "25px 85px 75px 100px " }}>
-                <label>Name</label>
-                <input type="text" onChange={onChange} value={data.name} className="form-control" name="name" />
-                <label>Email</label>
-                <input type="email" onChange={onChange} value={data.user_email} className="form-control" name="user_email" />
-                <label>Message</label>
-                <textarea name="message" onChange={onChange} value={data.message} className="form-control" row="4" />
-                <input type="submit" className="form-control btn btn-primary mt-3" value="Send" />
+                <label className="inputdata">Name</label>
+                <input type="text" onChange={onChange} value={data.name} className="form-control inputdata" name="name" />
+                <label className="inputdata">Email</label>
+                <input type="email" onChange={onChange} value={data.user_email} className="form-control inputdata" name="user_email" />
+                <label className="inputdata">Message</label>
+                <textarea name="message" onChange={onChange} value={data.message} className="form-control inputdata" row="4" />
+                <input type="submit" className="inputdata form-control btn btn-primary mt-3" value="Send" />
             </form>
         </div>
     )

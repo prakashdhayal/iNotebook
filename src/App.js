@@ -17,6 +17,7 @@ import LandingPage from './components/landingPage/LandingPage';
 
 function App() {
   const [alert, setAlert] = useState(null)
+  const [search, setSearch] = useState("")
   //show alert
   const showAlert = (message, type) => {
     setAlert({
@@ -32,14 +33,14 @@ function App() {
     <>
       <NoteState >
         <Router>
-          <Navbar showAlert={showAlert} />
+          <Navbar showAlert={showAlert} setSearch={setSearch} />
           <Alert alert={alert} />
           <div className="container">
             <Switch>
               <Route exact path="/">
                 {
                   (localStorage.getItem('auth-token')) ?
-                    <Home showAlert={showAlert} /> : <LandingPage />
+                    <Home showAlert={showAlert} search={search} /> : <LandingPage />
                 }
               </Route>
               <Route exact path="/about">
