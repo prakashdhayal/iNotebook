@@ -35,7 +35,7 @@ route.post('/register', async (req, res) => {
         password: hashedPassword
     })
     try {
-        success=true;
+        success = true;
         res.json({ success, user: user._id });
     } catch (error) {
         success = false;
@@ -86,6 +86,49 @@ route.get("/fetchuser", varifyToken, async (req, res) => {
         res.status(500).json({ success, error: "Internal server error" });
     }
 });
+
+// 4. Update user profile Using " put : /api/auth/updateprofile "  login required
+route.put('/updateprofile', varifyToken, async (req, res) => {
+    let success = false;
+
+    const user = await User.findOne({ _id: req.user._id });
+    let changepass = false;
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        if (req.body.password) {
+            changepass = true;
+        }
+        else {
+            user.password = user.password;
+        }
+    }
+    else {
+        success = false;
+        res.status(500).json({ success, error: "You are not authorize to update these Informations" });
+    }
+    //Lets validate the data before we make a user
+    const { error } = registerValidation({
+        name: user.name,
+        email: user.email,
+        password: (changepass) ? req.body.password : "StrongPassword@123"
+    });
+    if (changepass) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        user.password = hashedPassword;
+    }
+
+    if (error) return res.status(400).json({ success, error: error.details[0].message });
+    const updatedUser = await user.save();
+    try {
+        success = true;
+        res.json({ success, user: updatedUser._id });
+    } catch (error) {
+        success = false;
+        res.status(500).json({ success, error: "Internal server error" });
+    }
+})
 
 
 

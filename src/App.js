@@ -14,6 +14,7 @@ import Signup from './components/Signup';
 import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
 import LandingPage from './components/landingPage/LandingPage';
+import UserProfile from './components/UserProfile';
 
 function App() {
   const [alert, setAlert] = useState(null)
@@ -54,6 +55,9 @@ function App() {
               </Route>
               <Route exact path="/signup">
                 <Signup showAlert={showAlert} />
+              </Route>
+              <Route exact path="/updateprofile">
+                <UserProfile showAlert={showAlert} />
               </Route>
             </Switch>
           </div>

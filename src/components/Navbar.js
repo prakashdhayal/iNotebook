@@ -16,6 +16,9 @@ const Navbar = (props) => {
         }
 
     }
+    const handleUpdateProfile = () => {
+        history.push('/updateprofile');
+    }
     const pathname = window.location.pathname;
 
     return (
@@ -37,16 +40,18 @@ const Navbar = (props) => {
                             <Link className={`nav-link ${(location.path === '/contact') ? "active" : ""}`} to="/contact">Contact Us</Link>
                         </li>
                     </ul>
-                    <div className="searchnote">
-                        <SearchNote setSearch={props.setSearch}/>
-                    </div>
+                    {
+                        localStorage.getItem('auth-token') && <div className="searchnote">
+                            <SearchNote setSearch={props.setSearch} />
+                        </div>
+                    }
                     {
                         localStorage.getItem('auth-token') ? <div className="dropdown dropleft lsbutton">
                             <button className="btn btn-primary dropdown-toggle mx-5 " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 My Account
                             </button>
                             <div className="dropdown-menu my-3" style={{ width: "220px", border: "2px solid black" }} aria-labelledby="dropdownMenu2">
-                                <button className="dropdown-item" disabled={1} type="button">my profile</button>
+                                <button className="dropdown-item" onClick={handleUpdateProfile} type="button">my profile</button>
                                 <button className="dropdown-item my-2" disabled={1} type="button">Forgot password??</button>
                                 <button className="dropdown-item" type="button" onClick={handleLogout}>Logout</button>
                             </div>
