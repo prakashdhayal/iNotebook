@@ -1,6 +1,8 @@
-1. context API
-2. useLocation hook => The useLocation hook returns the location object that represents the current URL.
-3. react-router-dom
-4. concurrently npm
-5. useRef hook
-6. useHistory hook // for redirect 
+## Features of the Application
+
+1. New user registration
+2. User Login
+3. Update profile
+4. Maintain Notes (create, delete, update, read)
+5. Search notes
+6. Logout
